@@ -112,6 +112,10 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <ProjectReference Include="..\CecilToolkit\CecilToolkit.csproj">
+      <Project>{8866d3dd-d97e-4dbd-bc3a-5b0b6f3a777c}</Project>
+      <Name>CecilToolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CompilerTools\CompilerTools.csproj">
       <Project>{A25D26FB-3043-4BCF-833E-E3F4C3BE795E}</Project>
       <Name>CompilerTools</Name>
