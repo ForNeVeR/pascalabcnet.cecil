@@ -123,7 +123,7 @@ namespace PascalABCCompiler.NETGenerator
     /// <summary>
     /// Класс, переводящий сем. дерево в сборку .NET
     /// </summary>
-    public class ILConverter : AbstractVisitor
+    public class IlCodeGenerator : AbstractVisitor, ICodeGenerator
     {
         protected AppDomain ad;//домен приложения (в нем будет генерироваться сборка)
         protected AssemblyName an;//имя сборки
@@ -270,7 +270,7 @@ namespace PascalABCCompiler.NETGenerator
 
         private Hashtable StandartDirectories;
 
-        public ILConverter(Hashtable StandartDirectories)
+        public IlCodeGenerator(Hashtable StandartDirectories)
         {
             this.StandartDirectories = StandartDirectories;
         }

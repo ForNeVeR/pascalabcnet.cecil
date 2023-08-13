@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections;
+using NETGenerator;
 using PascalABCCompiler.NetHelper;
 
 namespace PascalABCCompiler.CodeGenerators
@@ -20,21 +21,21 @@ namespace PascalABCCompiler.CodeGenerators
 
 	public class Controller
 	{
-		private NETGenerator.ILConverter il_converter;//=new NETGenerator.ILConverter();
+		private ICodeGenerator _ilCodeGenerator;//=new NETGenerator.ILConverter();
 
 		public void Compile(SemanticTree.IProgramNode ProgramTree,string TargetFileName,string SourceFileName ,
             NETGenerator.CompilerOptions options, Hashtable StandartDirectories, string[] ResourceFiles)
 		{
-            il_converter = new NETGenerator.ILConverter(StandartDirectories);
-			il_converter.ConvertFromTree(ProgramTree, TargetFileName, SourceFileName, options, ResourceFiles);
+            _ilCodeGenerator = new CecilCodeGenerator(StandartDirectories);
+			_ilCodeGenerator.ConvertFromTree(ProgramTree, TargetFileName, SourceFileName, options, ResourceFiles);
 		}
 
 		public void EmitAssemblyRedirects(AssemblyResolveScope resolveScope, string outputFileName) =>
-			il_converter.EmitAssemblyRedirects(resolveScope, outputFileName);
+			_ilCodeGenerator.EmitAssemblyRedirects(resolveScope, outputFileName);
 
 		public void Reset()
 		{
-            il_converter = null;
+            _ilCodeGenerator = null;
         }
 	}
 }
