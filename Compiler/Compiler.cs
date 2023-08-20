@@ -2270,7 +2270,10 @@ namespace PascalABCCompiler
                             else*/
                             if (compilerOptions.UseDllForSystemUnits)
                                 cdo.RtlPABCSystemType = NetHelper.NetHelper.FindRtlType("PABCSystem.PABCSystem");
-                            CodeGeneratorsController.Compile(pn, CompilerOptions.OutputFileName, CompilerOptions.SourceFileName, cdo, CompilerOptions.StandartDirectories, ResourceFilesArray);
+
+                            var isUseNewGen = Environment.GetEnvironmentVariable("PABC_USE_NEW_GEN")?.Equals("new") ==
+                                              true;
+                            CodeGeneratorsController.Compile(pn, CompilerOptions.OutputFileName, CompilerOptions.SourceFileName, cdo, CompilerOptions.StandartDirectories, ResourceFilesArray, isUseNewGen);
                             CodeGeneratorsController.EmitAssemblyRedirects(
                                 assemblyResolveScope,
                                 CompilerOptions.OutputFileName);
