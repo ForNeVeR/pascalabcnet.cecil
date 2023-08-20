@@ -53,3 +53,5 @@ bin/mscorlib.txt
 bin/pabcnetc.exe
 bin/pabcnetcclear.exe
 bin/PascalABCNETLinux.exe
+
+*.user
