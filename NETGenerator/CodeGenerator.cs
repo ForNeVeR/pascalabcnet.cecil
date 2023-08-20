@@ -10,6 +10,7 @@
 using System;
 using System.Collections;
 using NETGenerator;
+using PascalABCCompiler.NETGenerator;
 using PascalABCCompiler.NetHelper;
 
 namespace PascalABCCompiler.CodeGenerators
@@ -24,9 +25,11 @@ namespace PascalABCCompiler.CodeGenerators
 		private ICodeGenerator _ilCodeGenerator;//=new NETGenerator.ILConverter();
 
 		public void Compile(SemanticTree.IProgramNode ProgramTree,string TargetFileName,string SourceFileName ,
-            NETGenerator.CompilerOptions options, Hashtable StandartDirectories, string[] ResourceFiles)
+            NETGenerator.CompilerOptions options, Hashtable StandartDirectories, string[] ResourceFiles, bool useNewCompiler)
 		{
-            _ilCodeGenerator = new CecilCodeGenerator(StandartDirectories);
+			_ilCodeGenerator = useNewCompiler
+				? (ICodeGenerator)new CecilCodeGenerator(StandartDirectories)
+				: new NETGenerator.IlCodeGenerator(StandartDirectories);
 			_ilCodeGenerator.ConvertFromTree(ProgramTree, TargetFileName, SourceFileName, options, ResourceFiles);
 		}
 
