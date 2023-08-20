@@ -12,13 +12,14 @@ using System.Security;
 using System.Text;
 using System.Threading;
 using PascalABCCompiler;
+using NETGenerator;
 using PascalABCCompiler.NETGenerator;
 using PascalABCCompiler.NetHelper;
 using PascalABCCompiler.SemanticTree;
 using PascalABCCompiler.SystemLibrary;
 using PascalABCCompiler.TreeConverter;
 
-namespace NETGenerator
+namespace PascalABCCompiler.NETGenerator
 {
    
     /// <summary>
@@ -2249,7 +2250,7 @@ namespace NETGenerator
         {
             IAttributeNode[] attrs = value.Attributes;
             foreach (IAttributeNode attr in attrs)
-                if (attr.AttributeType == SystemLibrary.comimport_type)
+                if (attr.AttributeType == PascalABCCompiler.SystemLibrary.SystemLibrary.comimport_type)
                     return true;
             return false;
         }
@@ -2908,7 +2909,7 @@ namespace NETGenerator
                 AddSpecialDebugVariables();
             }
             //\ivan for debug
-            if (func.return_value_type == null || func.return_value_type == SystemLibrary.void_type)
+            if (func.return_value_type == null || func.return_value_type == SystemLibrary.SystemLibrary.void_type)
                 il.Emit(OpCodes.Ret);
             cur_meth = tmp;
             cur_type = tmp_type;
@@ -9020,9 +9021,9 @@ namespace NETGenerator
                 //(ssyy) 29.01.2008 Внёс band, bor под switch
                 basic_function_type ft = value.basic_function.basic_function_type;
                 if ((ft == basic_function_type.objeq || ft == basic_function_type.objnoteq) && real_parameters[0].type.is_value_type && 
-                    (real_parameters[0].type is ICompiledTypeNode && !NetHelper.IsStandType((real_parameters[0].type as ICompiledTypeNode).compiled_type) || real_parameters[0].type is ICompiledGenericTypeInstance) && !real_parameters[0].type.is_nullable_type
+                    (real_parameters[0].type is ICompiledTypeNode && !NetHelper.NetHelper.IsStandType((real_parameters[0].type as ICompiledTypeNode).compiled_type) || real_parameters[0].type is ICompiledGenericTypeInstance) && !real_parameters[0].type.is_nullable_type
                     && real_parameters[1].type.is_value_type &&
-                    (real_parameters[1].type is ICompiledTypeNode && !NetHelper.IsStandType((real_parameters[1].type as ICompiledTypeNode).compiled_type) || real_parameters[1].type is ICompiledGenericTypeInstance) && !real_parameters[1].type.is_nullable_type)
+                    (real_parameters[1].type is ICompiledTypeNode && !NetHelper.NetHelper.IsStandType((real_parameters[1].type as ICompiledTypeNode).compiled_type) || real_parameters[1].type is ICompiledGenericTypeInstance) && !real_parameters[1].type.is_nullable_type)
                 {
                     ICompiledTypeNode ctn1 = real_parameters[0].type as ICompiledTypeNode;
                     ICompiledTypeNode ctn2 = real_parameters[1].type as ICompiledTypeNode;
