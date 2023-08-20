@@ -21,7 +21,8 @@ using PascalABCCompiler.TreeConverter;
 
 namespace PascalABCCompiler.NETGenerator
 {
-   
+    using AppDomain = CecilToolkit.ToolkitAppDomain;
+
     /// <summary>
     /// Класс, переводящий сем. дерево в сборку .NET
     /// </summary>
@@ -527,7 +528,7 @@ namespace PascalABCCompiler.NETGenerator
             string fname = TargetFileName;
             var onlyfname = System.IO.Path.GetFileName(fname);
             comp_opt = options;
-            ad = Thread.GetDomain(); //получаем домен приложения
+            ad = AppDomain.FromCurrentThread(); //получаем домен приложения
             an = new AssemblyName(); //создаем имя сборки
             an.Version = new Version("1.0.0.0");
             string dir = Directory.GetCurrentDirectory();
