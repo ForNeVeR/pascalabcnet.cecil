@@ -5,7 +5,7 @@ namespace CecilToolkit
 {
     public class ToolkitAssemblyBuilder
     {
-        public static ToolkitAssemblyBuilder From(AssemblyBuilder realBuilder) =>
+        internal static ToolkitAssemblyBuilder From(AssemblyBuilder realBuilder) =>
             new ToolkitAssemblyBuilder(realBuilder);
 
         private readonly AssemblyBuilder _realBuilder;
