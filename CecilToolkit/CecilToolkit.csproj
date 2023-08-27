@@ -41,6 +41,7 @@
     <ItemGroup>
         <Compile Include="ToolkitAppDomain.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="ToolkitAssemblyBuilder.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="LICENSE.md" />

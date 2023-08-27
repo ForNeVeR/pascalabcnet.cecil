@@ -22,6 +22,7 @@ using PascalABCCompiler.TreeConverter;
 namespace PascalABCCompiler.NETGenerator
 {
     using AppDomain = CecilToolkit.ToolkitAppDomain;
+    using AssemblyBuilder = CecilToolkit.ToolkitAssemblyBuilder;
 
     /// <summary>
     /// Класс, переводящий сем. дерево в сборку .NET
@@ -524,6 +525,7 @@ namespace PascalABCCompiler.NETGenerator
         public void ConvertFromTree(  IProgramNode p, string TargetFileName, string SourceFileName, CompilerOptions options, string[] ResourceFiles)
         {
             //SystemLibrary.SystemLibInitializer.RestoreStandardFunctions();
+            // TODO: Get rid of this capability for this code generator
             bool RunOnly = false;
             string fname = TargetFileName;
             var onlyfname = System.IO.Path.GetFileName(fname);
@@ -1116,11 +1118,11 @@ namespace PascalABCCompiler.NETGenerator
                         }
                         not_done = false;
                     }
-                    catch (System.Runtime.InteropServices.COMException e)
+                    catch (System.Runtime.InteropServices.COMException e) // TODO: Process the save exceptions correctly
                     {
                         throw new SaveAssemblyError(e.Message, new   PascalABCCompiler.TreeRealization.location(0, 0, 0, 0, new   PascalABCCompiler.TreeRealization.document(SourceFileName)));
                     }
-                    catch (System.IO.IOException e)
+                    catch (System.IO.IOException e) // TODO: Process the save exceptions correctly
                     {
                         if (tries < num_try_save)
                         {

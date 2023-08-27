@@ -18,10 +18,9 @@ namespace CecilToolkit
             _realDomain = realDomain;
         }
 
-        // TODO: ToolkitAssemblyBuilder
         // TODO: ToolkitAssemblyName
         // TODO: ToolkitAssemblyBuilderAccess
-        public AssemblyBuilder DefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, string dir) =>
-            _realDomain.DefineDynamicAssembly(name, access, dir);
+        public ToolkitAssemblyBuilder DefineDynamicAssembly(AssemblyName name, AssemblyBuilderAccess access, string dir) =>
+            ToolkitAssemblyBuilder.From(_realDomain.DefineDynamicAssembly(name, access, dir));
     }
 }
